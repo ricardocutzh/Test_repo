@@ -17,6 +17,11 @@ jobs:
         #run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
       - name: testing
         run: echo $RELEASE_VERSION
+      - uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r $RELEASE_VERSION.zip .
+      - name: listing dir
+        run: ls
       # - name: uploading zip
       #   uses: ItsKarma/aws-cli@v1.70.0
       #   with:
