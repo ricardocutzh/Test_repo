@@ -1,0 +1,17 @@
+---
+version: 0.2
+phases:
+  install:
+    commands:
+      - apt-get update && apt-get -y install python-pip && pip install --upgrade python && pip install --upgrade awscli
+  pre_build:
+      commands:
+      - ls
+  build:
+    commands:
+      - ls
+  post_build:
+    commands:
+      - echo "{\nfinish\n}" > build.json
+artifacts:
+  files: build.json
