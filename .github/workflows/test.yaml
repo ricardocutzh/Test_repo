@@ -25,6 +25,15 @@ jobs:
           args: zip -qq -r ${{steps.tag-value.outputs.tag}}.zip .
       - name: listing dir
         run: ls
+      - name: Upload files
+        uses: hannut91/aws-cli@v1.18.43
+        with:
+          args: s3 cp ${{steps.tag-value.outputs.tag}}.zip  s3://ricardo-nclouds-bucket/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+          AWS_DEFAULT_REGION: us-east-1
       # - name: uploading zip
       #   uses: ItsKarma/aws-cli@v1.70.0
       #   with:
