@@ -10,21 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: ls current dir
-        run: ls
-      # - name: Set env
-      #   run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF:10})" >> $GITHUB_ENV
-      #   #run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
-      # - name: testing
-      #   run: echo $RELEASE_VERSION
       - name: Get tag
         id: tag-value
         uses: dawidd6/action-get-tag@v1
       - uses: montudor/action-zip@v0.1.0
         with:
           args: zip -qq -r ${{steps.tag-value.outputs.tag}}.zip .
-      - name: listing dir
-        run: ls
       - name: Upload files
         uses: docker://amazon/aws-cli:latest
         with:
@@ -34,11 +25,3 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_DEFAULT_REGION: us-east-1
-      # - name: uploading zip
-      #   uses: ItsKarma/aws-cli@v1.70.0
-      #   with:
-      #     args: s3 sync --delete --acl public-read localdir/ s3://remote-bucket/
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: "us-east-1
