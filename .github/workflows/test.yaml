@@ -19,7 +19,7 @@ jobs:
       - name: Upload files
         uses: docker://amazon/aws-cli:latest
         with:
-          args: s3 cp ${{steps.tag-value.outputs.tag}}.zip  s3://ricardo-nclouds-bucket/
+          args: s3 cp ${{steps.tag-value.outputs.tag}}.zip  s3://xcm-demo-artifacts/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
