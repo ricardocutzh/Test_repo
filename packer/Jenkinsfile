@@ -16,16 +16,16 @@ pipeline {
                 sh 'cd packer && packer validate -var-file=./config/default.json master.json'
             }
         }
-        // stage('Build') {
-        //     steps {
-        //         sh 'cd packer && packer build -var-file=./config/default.json master.json'
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                sh 'cd packer && packer build -var-file=./config/default.json master.json'
+            }
+        }
         stage('Updating the build AMI') {
             steps {
                 dir('packer') {
-                    sh "pwd"
-                    sh 'ls -la'
+                    sh "AMI_ID=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)"
+                    sh 'echo $AMI_ID'
                 }
             }
         }
