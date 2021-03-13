@@ -31,5 +31,10 @@ pipeline {
                 }
             }
         }
+        stage('Checkin AWS CLI') {
+            steps {
+                sh 'aws --version'
+            }
+        } 
     }
 }
