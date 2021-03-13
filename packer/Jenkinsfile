@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'cd packer && packer build -var-file=./config/default.json master.json'
+                sh 'cd packer && packer build -var-file=./config/default.json master.json'
             }
         }
     }
