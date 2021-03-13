@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Updating the build AMI') {
             environment {
-                LS = "${sh(script:'jq -r '.builds[-1].artifact_id' packer/manifest.json | cut -d ":" -f2', returnStdout: true).trim()}"
+                LS = "${sh(script:'jq -r \'.builds[-1].artifact_id\' packer/manifest.json | cut -d \":\" -f2', returnStdout: true).trim()}"
             }
             steps {
                 dir('packer') {
