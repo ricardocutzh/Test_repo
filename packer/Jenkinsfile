@@ -16,9 +16,15 @@ pipeline {
                 sh 'cd packer && packer validate -var-file=./config/default.json master.json'
             }
         }
-        stage('Build') {
+        // stage('Build') {
+        //     steps {
+        //         sh 'cd packer && packer build -var-file=./config/default.json master.json'
+        //     }
+        // }
+        stage('Updating the build AMI') {
             steps {
-                sh 'cd packer && packer build -var-file=./config/default.json master.json'
+                sh 'cd packer'
+                sh 'ls -la'
             }
         }
     }
