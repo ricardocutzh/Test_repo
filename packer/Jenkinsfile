@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Packer Version') {
             steps {
-                sh 'packer --version' 
+                sh 'ls -la && packer --version' 
             }
         }
         stage('Test') {
