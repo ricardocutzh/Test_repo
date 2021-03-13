@@ -16,9 +16,9 @@ pipeline {
                 sh 'cd packer && packer validate -var-file=./config/default.json master.json'
             }
         }
-        stage('Deploy') {
+        stage('Build') {
             steps {
-                echo 'Deploying....'
+                echo 'cd packer && packer build -var-file=./config/default.json master.json'
             }
         }
     }
