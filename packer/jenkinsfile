@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        node {
+            label 'PACKER'
+        }
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'packer --version' 
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
