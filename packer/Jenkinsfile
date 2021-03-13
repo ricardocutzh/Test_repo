@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'cd packer && packer validate master.json'
+                sh 'cd packer && packer validate -var-file=./config/variables.json master.json'
             }
         }
         stage('Deploy') {
