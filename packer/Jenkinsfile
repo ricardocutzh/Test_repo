@@ -6,14 +6,14 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Packer Version') {
             steps {
                 sh 'packer --version' 
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'packer validate master.json'
             }
         }
         stage('Deploy') {
