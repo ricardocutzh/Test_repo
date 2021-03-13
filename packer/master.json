@@ -1,0 +1,41 @@
+{
+    "description": "testing packer",
+
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "{{ user `aws_region` }}",
+            "instance_type": "{{user `instance_type`}}",
+            "ssh_username": "ec2-user",
+            "source_ami": "{{user `source_ami`}}",
+            "ami_name": "{{ user `ami_name`}}-{{timestamp}}",
+            "temporary_iam_instance_profile_policy_document": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Action": [
+                            "secretsmanager:*",
+                            "ssm:*"
+                        ],
+                        "Effect": "Allow",
+                        "Resource": "*"
+                    }
+                ]
+            }
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/test.sh"
+        }
+    ],
+    "post-processors": [
+        {
+          "type": "manifest",
+          "output": "manifest.json",
+          "strip_path": true
+        }
+    ]
+}

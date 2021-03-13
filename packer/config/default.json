@@ -1,0 +1,8 @@
+{
+    "aws_region": "us-west-2",
+    "source_ami":"ami-00f9f4069d04c0c6e",
+    "ami_name": "ricardo-test",
+    "instance_type": "t2.medium",
+    "identifier": "ricardo",
+    "environment": "test"
+}
