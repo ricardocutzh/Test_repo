@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'packer validate master.json'
+                sh 'cd packer && packer validate master.json'
             }
         }
         stage('Deploy') {
