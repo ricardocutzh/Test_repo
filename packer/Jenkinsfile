@@ -23,8 +23,10 @@ pipeline {
         // }
         stage('Updating the build AMI') {
             steps {
-                sh 'cd packer'
-                sh 'ls -la'
+                dir('packer') {
+                    sh "pwd"
+                    sh 'ls -la'
+                }
             }
         }
     }
