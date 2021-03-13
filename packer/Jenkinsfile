@@ -24,8 +24,8 @@ pipeline {
         stage('Updating the build AMI') {
             steps {
                 dir('packer') {
-                    sh "AMI_ID=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)"
-                    sh 'echo $AMI_ID'
+                    sh "AMI_ID=\$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)"
+                    sh 'echo \$AMI_ID'
                 }
             }
         }
