@@ -28,13 +28,10 @@ pipeline {
             steps {
                 dir('packer') {
                      echo "AMI_ID = ${env.AMI_ID}"
+                     sh "aws --region us-west-2 ec2 create-launch-template-version --launch-template-name ricardo-test-launchtemplate --version-description \"new version ${env.AMI_ID}\"  --launch-template-data '{\"ImageId\":\"${env.AMI_ID}\"}'"
+                     sh "aws --region us-west-2 autoscaling start-instance-refresh --auto-scaling-group-name us2-dev-tomcat-asg --preferences MinHealthyPercentage=100,InstanceWarmup=120"
                 }
             }
         }
-        stage('Checkin AWS CLI') {
-            steps {
-                sh 'aws --version'
-            }
-        } 
     }
 }
