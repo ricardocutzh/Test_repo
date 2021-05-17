@@ -26,6 +26,6 @@ jenkins:
       users:
         - id: ${ADMIN_USER}
           password: ${ADMIN_PASSWORD}
-        - id: ${LAMBDA_USER}
-          password: ${LAMBDA_PASSWORD}
+        - id: lambda
+          password: lambda
           
