@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Update Jenkins Jobs') {
             steps {
-                sh "pipeline test"
+                echo "pipeline test"
             }
         }
         stage('Reloading Casc configuration') {
