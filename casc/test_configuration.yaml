@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Configuration reloaded by Ricardo Automation"
+  systemMessage: "TEST CHANGE"
   authorizationStrategy:
     roleBased:
       roles:
