@@ -9,6 +9,7 @@ jobs:
             nodeParameterName('master')
           }
         }
+
         if( !System.getenv('DOCKER_COMPOSE') ) {
           scm {
             git {
@@ -20,6 +21,7 @@ jobs:
             }
           }
         }
+
         displayName('seed-job')
         steps {
           dsl {
@@ -28,12 +30,14 @@ jobs:
             removeViewAction('DELETE')
           }
         }
+
         publishers {
           downstreamParameterized {
             trigger('General/seed_sharedlib') {
               condition('SUCCESS')
             }
           }
+
           groovyPostBuild('''
           import jenkins.model.Jenkins
           import hudson.security.ACL
@@ -56,4 +60,5 @@ jobs:
           }
           ''', Behavior.DoNothing)
         }
+        
       }
