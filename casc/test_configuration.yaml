@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Configuration reloaded automatically \n\n"
+  systemMessage: "Configuration reloaded by Ricardo Automation"
   authorizationStrategy:
     roleBased:
       roles:
@@ -9,7 +9,8 @@ jenkins:
             permissions:
               - "Overall/Administer"
             assignments:
-              - ottera
+              - ${ADMIN_USER}
+              - test-user
           - name: "Triggers"
             description: "Triggers for builds"
             permissions:
@@ -18,13 +19,13 @@ jenkins:
               - "Job/Read"
               - "Agent/Build"
             assignments:
-              - lambda
+              - ${LAMBDA_USER}
   securityRealm:
     local:
       allowsSignup: false
       users:
-        - id: ottera
-          password: ottera1234
-        - id: lambda
-          password: lambda
+        - id: ${ADMIN_USER}
+          password: ${ADMIN_PASSWORD}
+        - id: ${LAMBDA_USER}
+          password: ${LAMBDA_PASSWORD}
           
