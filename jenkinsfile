@@ -12,6 +12,15 @@ pipeline {
                 echo "pipeline test"
             }
         }
+        stage('creating seed job') {
+            steps {
+                dsl {
+                    external('jobs/**')
+                    removeAction('DELETE')
+                    removeViewAction('DELETE')
+                }
+            }
+        }
         stage('Reloading Casc configuration') {
             steps {
                 sh "ls -la"
