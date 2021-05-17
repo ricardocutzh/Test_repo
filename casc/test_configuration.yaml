@@ -1,30 +1,30 @@
 jenkins:
   systemMessage: "Configuration reloaded automatically \n\n"
-  # authorizationStrategy:
-  #   roleBased:
-  #     roles:
-  #       global:
-  #         - name: "Administrators"
-  #           description: "Jenkins administrators"
-  #           permissions:
-  #             - "Overall/Administer"
-  #           assignments:
-  #             - ${ADMIN_USER}
-  #         - name: "Triggers"
-  #           description: "Triggers for builds"
-  #           permissions:
-  #             - "Overall/Read"
-  #             - "Job/Build"
-  #             - "Job/Read"
-  #             - "Agent/Build"
-  #           assignments:
-  #             - ${LAMBDA_USER}
-  # securityRealm:
-  #   local:
-  #     allowsSignup: false
-  #     users:
-  #       - id: ${ADMIN_USER}
-  #         password: ${ADMIN_PASSWORD}
-  #       - id: ${LAMBDA_USER}
-  #         password: ${LAMBDA_PASSWORD}
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          - name: "Administrators"
+            description: "Jenkins administrators"
+            permissions:
+              - "Overall/Administer"
+            assignments:
+              - ottera
+          - name: "Triggers"
+            description: "Triggers for builds"
+            permissions:
+              - "Overall/Read"
+              - "Job/Build"
+              - "Job/Read"
+              - "Agent/Build"
+            assignments:
+              - lambda
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: ottera
+          password: ottera1234
+        - id: lambda
+          password: lambda
           
