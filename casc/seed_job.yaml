@@ -19,12 +19,10 @@ jobs:
         }
         displayName('seed-job')
         steps {
-          sh """
-          ls
-          rm -rf /etc/casc/*
-          ls -la /etc/casc
-          cp ./casc/*.yaml /etc/casc/
-          """
+          sh "ls"
+          sh "rm -rf /etc/casc/*"
+          sh "ls -la /etc/casc"
+          sh "cp ./casc/*.yaml /etc/casc/"
         }
         publishers {
           groovyPostBuild('''
