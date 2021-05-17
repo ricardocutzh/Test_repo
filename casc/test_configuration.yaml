@@ -10,7 +10,7 @@ jenkins:
               - "Overall/Administer"
             assignments:
               - ${ADMIN_USER}
-              # - test-user
+              - test-user
           - name: "Triggers"
             description: "Triggers for builds"
             permissions:
