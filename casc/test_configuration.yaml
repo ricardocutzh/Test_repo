@@ -19,7 +19,7 @@ jenkins:
               - "Job/Read"
               - "Agent/Build"
             assignments:
-              - ${LAMBDA_USER}
+              - lambda
   securityRealm:
     local:
       allowsSignup: false
