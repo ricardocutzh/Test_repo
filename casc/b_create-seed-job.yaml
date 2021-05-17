@@ -1,3 +1,4 @@
+
 jobs:
   - script: >
       freeStyleJob('seed-job') {
@@ -60,5 +61,5 @@ jobs:
           }
           ''', Behavior.DoNothing)
         }
-        
+
       }
