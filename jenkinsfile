@@ -1,0 +1,23 @@
+pipeline {
+    agent {
+        node {
+            label 'master'
+        }
+    }
+
+    stages {
+        stage('Update Jenkins Jobs') {
+            steps {
+                sh "pipeline test"
+            }
+        }
+        stage('Reloading Casc configuration') {
+            steps {
+                sh "ls -la"
+                sh "rm -rf /etc/casc/*"
+                sh "ls -la /etc/casc"
+                sh "cp ./casc/*.yaml /etc/casc/"
+            }
+        }
+    }
+}
