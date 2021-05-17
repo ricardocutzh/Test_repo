@@ -23,9 +23,9 @@ freeStyleJob('ricardo-seed-job') {
     displayName('ricardo-seed-job')
     steps {
         dsl {
-        external('jenkins/jobs/**')
-        removeAction('DELETE')
-        removeViewAction('DELETE')
+            external('jobs/**')
+            removeAction('DELETE')
+            removeViewAction('DELETE')
         }
     }
 
