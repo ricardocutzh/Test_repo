@@ -22,11 +22,7 @@ freeStyleJob('ricardo-seed-job') {
 
     displayName('ricardo-seed-job')
     steps {
-        dsl {
-            external('jobs/**')
-            removeAction('DELETE')
-            removeViewAction('DELETE')
-        }
+        jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE', lookupStrategy: 'SEED_JOB'
     }
 
     publishers {
