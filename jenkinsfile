@@ -1,3 +1,4 @@
+import io.jenkins.plugins.casc.ConfigurationAsCode;
 pipeline {
     agent {
         node {
@@ -18,7 +19,6 @@ pipeline {
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
                 script {
-                    import io.jenkins.plugins.casc.ConfigurationAsCode;
                     ConfigurationAsCode.get().configure()
                 }
             }
