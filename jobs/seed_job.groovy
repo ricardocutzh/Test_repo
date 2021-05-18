@@ -1,22 +1,22 @@
 freeStyleJob('ricardo-seed-job') {
     triggers {
         hudsonStartupTrigger {
-        quietPeriod("10")
-        runOnChoice("ON_CONNECT")
-        label("")
-        nodeParameterName('master')
+            quietPeriod("10")
+            runOnChoice("ON_CONNECT")
+            label("")
+            nodeParameterName('master')
         }
     }
 
     if( !System.getenv('DOCKER_COMPOSE') ) {
         scm {
-        git {
-            remote {
-            url('https://git-codecommit.us-west-2.amazonaws.com/v1/repos/ottera-jenkins')
-            credentials('jenkins-codecommit-user')
+            git {
+                remote {
+                    url('https://git-codecommit.us-west-2.amazonaws.com/v1/repos/ottera-jenkins')
+                    credentials('jenkins-codecommit-user')
+                }
+                branches('master')
             }
-            branches('master')
-        }
         }
     }
 
@@ -27,9 +27,9 @@ freeStyleJob('ricardo-seed-job') {
 
     publishers {
         downstreamParameterized {
-        trigger('General/seed_sharedlib') {
-            condition('SUCCESS')
-        }
+            trigger('General/seed_sharedlib') {
+                condition('SUCCESS')
+            }
         }
 
         groovyPostBuild('''

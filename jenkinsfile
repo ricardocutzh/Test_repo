@@ -1,7 +1,4 @@
 import io.jenkins.plugins.casc.ConfigurationAsCode;
-import javaposse.jobdsl.dsl.DslFactory
-import javaposse.jobdsl.dsl.Folder
-import javaposse.jobdsl.dsl.jobs.WorkflowJob
 pipeline {
     agent {
         node {
@@ -17,7 +14,7 @@ pipeline {
         }
         stage('creating seed job') {
             steps {
-                jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE', additionalClasspath: 'jobs/build/libs/*.jar'
+                jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
                 echo "test"
             }
         }
