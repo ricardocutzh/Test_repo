@@ -24,6 +24,7 @@ pipeline {
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
                 echo "${env.JENKINS_URL}"
+                sh "curl google.com"
             }
         }
     }
