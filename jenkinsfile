@@ -1,5 +1,4 @@
-import io.jenkins.plugins.casc.ConfigurationAsCode;
-pipeline {
+spipeline {
     agent {
         node {
             label 'master'
@@ -24,9 +23,7 @@ pipeline {
                 sh "rm -rf /etc/casc/*"
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
-                script {
-                    ConfigurationAsCode.get().configure()
-                }
+                echo "${env.JENKINS_URL}"
             }
         }
     }
