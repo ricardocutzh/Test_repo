@@ -14,7 +14,7 @@ pipeline {
         }
         stage('creating seed job') {
             steps {
-                // jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
+                jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE', additionalClasspath: 'jobs/build/libs/*.jar'
                 echo "test"
             }
         }
@@ -24,14 +24,8 @@ pipeline {
                 sh "rm -rf /etc/casc/*"
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
-                // script {
-                //     ConfigurationAsCode.get().configure()
-                // }
-                systemGroovyCommand("""
-                    import io.jenkins.plugins.casc.ConfigurationAsCode;
+                script {
                     ConfigurationAsCode.get().configure()
-                """.stripIndent()) {
-                    sandbox(true)
                 }
             }
         }
