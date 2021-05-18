@@ -19,6 +19,7 @@ def call (Map pipelineParams) {
         post {
             always {
                 echo "cleaning up..."
+                slackNotification(currentBuild.result)
             }
         }
     }
