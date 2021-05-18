@@ -1,4 +1,7 @@
 import io.jenkins.plugins.casc.ConfigurationAsCode;
+import javaposse.jobdsl.dsl.DslFactory
+import javaposse.jobdsl.dsl.Folder
+import javaposse.jobdsl.dsl.jobs.WorkflowJob
 pipeline {
     agent {
         node {
