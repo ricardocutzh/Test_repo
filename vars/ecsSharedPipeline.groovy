@@ -19,7 +19,6 @@ def call (Map pipelineParams) {
                 steps {
                     echo 'Docker build'
                     sh "sleep 15"
-                    sh "false"
                 }
             }
         }
