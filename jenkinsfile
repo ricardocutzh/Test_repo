@@ -35,9 +35,8 @@ pipeline {
                     // or inside double quotes for string interpolation
                     echo "username is $USERNAME"
 
-                    sh "crumb=\$(curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\")"
+                    sh "crumb=\$(curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\") && echo $crumb"
                     //sh "curl -u \"$PASSWORD:$USERNAME\" -H \"$crumb\" -X POST **${env.JENKINS_URL}configuration-as-code/reload**"
-                    sh "echo $crumb"
                 }
             }
         }
