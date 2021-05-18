@@ -31,7 +31,6 @@ pipeline {
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
                 echo "${env.JENKINS_URL}"
-                sh "curl google.com"
                 echo "$CRUMB"
                 sh "curl -u \"${env.JENKINS_CREDS_USR}:${env.JENKINS_CREDS_PSW}\" -H \"${env.CRUMB}\" -X POST \"${env.JENKINS_URL}configuration-as-code/reload\""
 
