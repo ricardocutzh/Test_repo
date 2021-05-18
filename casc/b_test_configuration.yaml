@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "TEST CHANGE"
+  systemMessage: "RICARDO LO LOGRASTE"
   authorizationStrategy:
     roleBased:
       roles:
