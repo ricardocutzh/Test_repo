@@ -32,7 +32,7 @@ pipeline {
                 sh "cp ./casc/*.yaml /etc/casc/"
                 echo "${env.JENKINS_URL}"
                 echo "$CRUMB"
-                sh "curl -u \"${env.JENKINS_CREDS_USR}:${env.JENKINS_CREDS_PSW}\" -H \"${env.CRUMB}\" -X POST **${env.JENKINS_URL}configuration-as-code/reload**"
+                sh "curl -u \"${env.JENKINS_CREDS_USR}:${env.JENKINS_CREDS_PSW}\" -H \"${env.CRUMB}\" -X POST '${env.JENKINS_URL}configuration-as-code/reload'"
 
                 // sh "crumb=$(curl -u \":pass\" -s '${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)')"
                 // withCredentials([usernamePassword(credentialsId: 'ottera-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
