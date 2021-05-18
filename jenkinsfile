@@ -29,15 +29,17 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'ottera-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     // available as an env variable, but will be masked if you try to print it out any which way
                     // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
-                    sh 'echo $PASSWORD'
+                    //Ssh 'echo $PASSWORD'
                     // also available as a Groovy variable
-                    echo USERNAME
+                    //echo USERNAME
                     // or inside double quotes for string interpolation
-                    echo "username is $USERNAME"
+                    //echo "username is $USERNAME"
 
-                    sh "crumb=\$(curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\")"
+                    //sh "crumb=\$(curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\")"
                     //sh "curl -u \"$PASSWORD:$USERNAME\" -H \"$crumb\" -X POST **${env.JENKINS_URL}configuration-as-code/reload**"
-                    echo "\$crumb"
+                    environment {
+                        CRUMB = sh(script:"curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\"", returnStdout: true).trim()
+                    }
                 }
             }
         }
