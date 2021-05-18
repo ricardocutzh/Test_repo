@@ -4,7 +4,9 @@ pipeline {
             label 'master'
         }
     }
-
+    environment {
+        SSH_KEY = credentials('ottera-admin')
+    }
     stages {
         stage('Update Jenkins Jobs') {
             steps {
@@ -18,6 +20,11 @@ pipeline {
         //     }
         // }
         stage('Reloading Casc configuration') {
+            environment {
+                environment {
+                    CRUMB = sh(script:"curl -u \"$USER_CREDENTIALS_PSW:$USER_CREDENTIALS_USR\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\"", returnStdout: true).trim()
+                }
+            }
             steps {
                 sh "ls -la"
                 sh "rm -rf /etc/casc/*"
@@ -25,22 +32,24 @@ pipeline {
                 sh "cp ./casc/*.yaml /etc/casc/"
                 echo "${env.JENKINS_URL}"
                 sh "curl google.com"
-                // sh "crumb=$(curl -u \":pass\" -s '${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)')"
-                withCredentials([usernamePassword(credentialsId: 'ottera-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    // available as an env variable, but will be masked if you try to print it out any which way
-                    // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
-                    //Ssh 'echo $PASSWORD'
-                    // also available as a Groovy variable
-                    //echo USERNAME
-                    // or inside double quotes for string interpolation
-                    //echo "username is $USERNAME"
+                sh "echo $CRUMB"
 
-                    //sh "crumb=\$(curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\")"
-                    //sh "curl -u \"$PASSWORD:$USERNAME\" -H \"$crumb\" -X POST **${env.JENKINS_URL}configuration-as-code/reload**"
-                    environment {
-                        CRUMB = sh(script:"curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\"", returnStdout: true).trim()
-                    }
-                }
+                // sh "crumb=$(curl -u \":pass\" -s '${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)')"
+                // withCredentials([usernamePassword(credentialsId: 'ottera-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                //     // available as an env variable, but will be masked if you try to print it out any which way
+                //     // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
+                //     //Ssh 'echo $PASSWORD'
+                //     // also available as a Groovy variable
+                //     //echo USERNAME
+                //     // or inside double quotes for string interpolation
+                //     //echo "username is $USERNAME"
+
+                //     //sh "crumb=\$(curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\")"
+                //     //sh "curl -u \"$PASSWORD:$USERNAME\" -H \"$crumb\" -X POST **${env.JENKINS_URL}configuration-as-code/reload**"
+                //     environment {
+                //         CRUMB = sh(script:"curl -u \"$PASSWORD:$USERNAME\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\"", returnStdout: true).trim()
+                //     }
+                // }
             }
         }
     }
