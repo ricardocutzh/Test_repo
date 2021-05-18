@@ -1,4 +1,4 @@
-folder('General') {
+folder('RICARDO-TEST') {
     description('folder for general jobs')
 }
 // freeStyleJob('ricardo-seed-job') {
