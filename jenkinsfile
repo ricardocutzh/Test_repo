@@ -14,7 +14,8 @@ pipeline {
         }
         stage('creating seed job') {
             steps {
-                jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
+                // jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
+                echo "test"
             }
         }
         stage('Reloading Casc configuration') {
