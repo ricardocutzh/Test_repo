@@ -24,8 +24,14 @@ pipeline {
                 sh "rm -rf /etc/casc/*"
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
-                script {
+                // script {
+                //     ConfigurationAsCode.get().configure()
+                // }
+                systemGroovyCommand("""
+                    import io.jenkins.plugins.casc.ConfigurationAsCode;
                     ConfigurationAsCode.get().configure()
+                """.stripIndent()) {
+                    sandbox(true)
                 }
             }
         }
