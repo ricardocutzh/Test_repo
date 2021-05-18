@@ -4,36 +4,36 @@
 folder('General') {
     description('folder for general jobs')
 }
-// import io.jenkins.plugins.casc.ConfigurationAsCode;
-// pipeline {
-//     agent {
-//         node {
-//             label 'master'
-//         }
-//     }
+import io.jenkins.plugins.casc.ConfigurationAsCode;
+pipeline {
+    agent {
+        node {
+            label 'master'
+        }
+    }
 
-//     stages {
-//         stage('Update Jenkins Jobs') {
-//             steps {
-//                 echo "pipeline test"
-//             }
-//         }
-//         stage('creating seed job') {
-//             steps {
-//                 jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
-//                 echo "test"
-//             }
-//         }
-//         stage('Reloading Casc configuration') {
-//             steps {
-//                 sh "ls -la"
-//                 sh "rm -rf /etc/casc/*"
-//                 sh "ls -la /etc/casc"
-//                 sh "cp ./casc/*.yaml /etc/casc/"
-//                 script {
-//                     ConfigurationAsCode.get().configure()
-//                 }
-//             }
-//         }
-//     }
-// }
+    stages {
+        stage('Update Jenkins Jobs') {
+            steps {
+                echo "pipeline test"
+            }
+        }
+        stage('creating seed job') {
+            steps {
+                jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
+                echo "test"
+            }
+        }
+        // stage('Reloading Casc configuration') {
+        //     steps {
+        //         sh "ls -la"
+        //         sh "rm -rf /etc/casc/*"
+        //         sh "ls -la /etc/casc"
+        //         sh "cp ./casc/*.yaml /etc/casc/"
+        //         script {
+        //             ConfigurationAsCode.get().configure()
+        //         }
+        //     }
+        // }
+    }
+}
