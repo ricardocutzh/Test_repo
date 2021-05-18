@@ -28,9 +28,7 @@ freeStyleJob('ricardo-seed-job') {
         jobDsl targets: ['jobs/*.groovy'].join('\n'),
            removedJobAction: 'DELETE',
            removedViewAction: 'DELETE',
-           lookupStrategy: 'SEED_JOB',
-        //    additionalClasspath: ['libA.jar', 'libB.jar'].join('\n'),
-        //    additionalParameters: [message: 'Hello from pipeline', credentials: 'SECRET']
+           lookupStrategy: 'SEED_JOB'
     }
 
     publishers {
