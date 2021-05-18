@@ -32,7 +32,7 @@ pipeline {
                 sh "cp ./casc/*.yaml /etc/casc/"
                 echo "${env.JENKINS_URL}"
                 sh "curl google.com"
-                sh "echo $CRUMB"
+                echo "$CRUMB"
 
                 // sh "crumb=$(curl -u \":pass\" -s '${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)')"
                 // withCredentials([usernamePassword(credentialsId: 'ottera-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
