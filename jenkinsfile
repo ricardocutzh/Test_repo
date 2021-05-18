@@ -22,7 +22,7 @@ pipeline {
         stage('Reloading Casc configuration') {
             environment {
 
-                CRUMB = sh(script:"curl -u \"$JENKINS_CREDS_PSW:$JENKINS_CREDS_USR\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\"", returnStdout: true).trim()
+                CRUMB = sh(script:"curl -u \"$JENKINS_CREDS_USR:$JENKINS_CREDS_PSW\" -s \"${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)\"", returnStdout: true).trim()
 
             }
             steps {
