@@ -12,22 +12,22 @@ pipeline {
                 echo "pipeline test"
             }
         }
-        stage('creating seed job') {
-            steps {
-                jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
-                echo "test"
-            }
-        }
-        // stage('Reloading Casc configuration') {
+        // stage('creating seed job') {
         //     steps {
-        //         sh "ls -la"
-        //         sh "rm -rf /etc/casc/*"
-        //         sh "ls -la /etc/casc"
-        //         sh "cp ./casc/*.yaml /etc/casc/"
-        //         script {
-        //             ConfigurationAsCode.get().configure()
-        //         }
+        //         jobDsl targets: 'jobs/*.groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE'
+        //         echo "test"
         //     }
         // }
+        stage('Reloading Casc configuration') {
+            steps {
+                sh "ls -la"
+                sh "rm -rf /etc/casc/*"
+                sh "ls -la /etc/casc"
+                sh "cp ./casc/*.yaml /etc/casc/"
+                script {
+                    ConfigurationAsCode.get().configure()
+                }
+            }
+        }
     }
 }
