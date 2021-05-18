@@ -11,7 +11,8 @@ def call (Map pipelineParams) {
         stages {
             stage('Started') {
                 steps {
-                    slackNotification('STARTED')
+                    echo "starting"
+                    // slackNotification('STARTED')
                 }
             }
             stage('Docker Build'){
@@ -26,7 +27,7 @@ def call (Map pipelineParams) {
         post {
             always {
                 echo "cleaning up..."
-                slackNotification(currentBuild.result)
+                // slackNotification(currentBuild.result)
             }
         }
     }

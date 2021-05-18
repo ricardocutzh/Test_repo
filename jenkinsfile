@@ -1,5 +1,6 @@
 #!groovy
 @Library('seed_sharedlib@master')_
+slackNotification('STARTED')
 ecsSharedPipeline(
   ECR_REPO: '836333053777.dkr.ecr.us-west-2.amazonaws.com',
   GIT_REPO: 'ssh://git-codecommit.us-west-2.amazonaws.com/v1/repos/ottera-stage',
