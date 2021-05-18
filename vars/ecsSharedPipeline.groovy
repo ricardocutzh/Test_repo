@@ -9,9 +9,9 @@ def call (Map pipelineParams) {
             SSH_KEY = "test"
         }
         stages {
-            stage('Notifying') {
+            stage('Started') {
                 steps {
-                    slackNotification(currentBuild.result)
+                    slackNotification('STARTED')
                 }
             }
             stage('Docker Build'){
