@@ -11,6 +11,7 @@ ecsSharedPipeline(
   CHANNEL: 'zzz',
   DEPLOY_TIMEOUT: '300'
 )
+slackNotification(currentBuild.result)
 // pipeline {
 //     agent {
 //         node {
