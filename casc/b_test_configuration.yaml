@@ -28,4 +28,6 @@ jenkins:
           password: ${ADMIN_PASSWORD}
         - id: lambda
           password: lambda
+        - id: ricardo
+          password: ricardo
           
