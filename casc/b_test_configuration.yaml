@@ -11,6 +11,7 @@ jenkins:
             assignments:
               - ${ADMIN_USER}
               - test-user
+              - ricardo
           - name: "Triggers"
             description: "Triggers for builds"
             permissions:
