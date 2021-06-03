@@ -29,13 +29,13 @@ pipeline {
         stage('rsync') {
             steps {
                 echo "running rsync"
-                sh "rsync -rav  `find temp/origin -type f -mtime -50` temp/dest"
+                sh "rsync -rav  `find temp/origin -type f -mtime +30` temp/dest"
                 sh "du -sh temp/dest"
             }
         }
         stage('deleteing old') {
             steps {
-                echo "deleting old files"
+                echo "find temp/dest -mtime +30 -print -delete"
             }
         }
     }
