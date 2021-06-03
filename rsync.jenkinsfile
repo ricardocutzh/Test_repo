@@ -12,7 +12,7 @@ pipeline {
         }
         stage('deleteing old') {
             steps {
-                sh "deleting old files"
+                echo "deleting old files"
             }
         }
     }
