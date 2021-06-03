@@ -16,7 +16,7 @@ pipeline {
         stage('command to run'){
             steps {
                 echo "creating old files"
-                sh "cd temp/origin && touch -t 201905051910.35 old{1..10}.txt"
+                sh "cd temp/origin && touch -t 201905051910.35 old\{1..10\}.txt"
                 sh "ls -la temp/origin"
             }
         }
