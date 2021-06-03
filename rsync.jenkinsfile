@@ -14,8 +14,8 @@ pipeline {
         }
         stage('command to run'){
             steps {
-                // sh "touch -t 201905051910.35 old{1..10}.txt"
-                echo "test"
+                echo "creating old files"
+                sh "cd temp/origin && touch -t 201905051910.35 old{1..10}.txt"
             }
         }
         stage('rsync') {
