@@ -5,6 +5,19 @@ pipeline {
         }
     }
     stages {
+        stage('creating folders'){
+            steps {
+                sh "mkdir temp/"
+                sh "mkdir temp/origin"
+                sh "mkdir temp/dest"
+            }
+        }
+        stage('command to run'){
+            steps {
+                // sh "touch -t 201905051910.35 old{1..10}.txt"
+                echo "test"
+            }
+        }
         stage('rsync') {
             steps {
                 echo "running rsync"
