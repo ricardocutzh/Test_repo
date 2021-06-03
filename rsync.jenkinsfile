@@ -11,6 +11,7 @@ pipeline {
                 sh "rm -rf temp/"
                 sh "mkdir temp/"
                 sh "mkdir temp/origin"
+                sh "mkdir temp/origin/recursive"
                 sh "mkdir temp/dest"
             }
         }
@@ -20,6 +21,7 @@ pipeline {
                 sh "cd temp/origin && fallocate -l 1G old.txt"
                 sh "cd temp/origin && fallocate -l 10G new.txt"
                 sh "cd temp/origin && touch -t 201905051910.35 old.txt"
+                sh "cd temp/origin/recursive && fallocate -l 5G recursive.txt"
                 sh "ls -la temp/origin"
                 sh "du -sh temp/origin"
             }
