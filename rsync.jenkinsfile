@@ -26,6 +26,8 @@ pipeline {
         stage('rsync') {
             steps {
                 echo "running rsync"
+                sh "rsync -rav  `find temp/origin -type f -mtime -50` temp/dest"
+                sh "du -sh temp/dest"
             }
         }
         stage('deleteing old') {
