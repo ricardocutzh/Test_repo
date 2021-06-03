@@ -19,7 +19,7 @@ pipeline {
                 sh "cd temp/origin fallocate -l 1G old.txt"
                 sh "cd temp/origin && touch -t 201905051910.35 old.txt"
                 sh "ls -la temp/origin"
-                sh "df -h temp/origin"
+                sh "df -h ."
             }
         }
         stage('rsync') {
