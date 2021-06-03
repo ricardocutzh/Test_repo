@@ -36,8 +36,10 @@ pipeline {
         stage('deleteing old') {
             steps {
                 sh "ls -la temp/dest"
+                sh "du -sh temp/dest"
                 echo "find temp/dest -mtime +30 -print -delete"
                 sh "ls -la temp/dest"
+                sh "du -sh temp/dest"
             }
         }
     }
