@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('creating folders'){
             steps {
-                sh "apt install -y rsync"
+                sh "apt update -y && apt install -y rsync"
                 sh "rm -rf temp/"
                 sh "mkdir temp/"
                 sh "mkdir temp/origin"
