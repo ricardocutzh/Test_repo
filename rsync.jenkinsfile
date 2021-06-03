@@ -16,7 +16,7 @@ pipeline {
         stage('command to run'){
             steps {
                 echo "creating old files"
-                sh "cd temp/origin fallocate -l 1G old.txt"
+                sh "cd temp/origin && fallocate -l 1G old.txt"
                 sh "cd temp/origin && touch -t 201905051910.35 old.txt"
                 sh "ls -la temp/origin"
                 sh "du -sh temp/origin"
