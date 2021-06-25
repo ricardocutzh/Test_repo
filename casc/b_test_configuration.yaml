@@ -21,6 +21,17 @@ jenkins:
               - "Agent/Build"
             assignments:
               - lambda
+          - name: "TestMinimal"
+            description: "Minimal permissions"
+            permissions:
+              - "Overall/Read"
+              - "Agent/Build"
+              - "Job/Build"
+              - "Job/Read"
+              - "Run/Replay"
+              - "View/Read"
+            assignments:
+              - ricardo-minimal
   securityRealm:
     local:
       allowsSignup: false
