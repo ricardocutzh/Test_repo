@@ -72,7 +72,6 @@ pipeline {
             // }
             steps {
                 echo "conditional step drush"
-                echo "${env.FLAG}"
                 script {
                     if (env.FLAG == 'DRUSH ' || env.FLAG == 'BOTH'){
                         echo "${env.FLAG}"
