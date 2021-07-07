@@ -66,5 +66,13 @@ pipeline {
                 // }
             }
         }
+        stag('conditional test'){
+            // when {
+            //     expression {}
+            // }
+            steps {
+                echo "conditional step"
+            }
+        }
     }
 }
