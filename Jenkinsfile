@@ -66,39 +66,39 @@ pipeline {
                 // }
             }
         }
-        stage('SCRIPT CONDITION'){
-            // when {
-            //     expression { env.FLAG == 'DRUSH' }
-            // }
+        // stage('SCRIPT CONDITION'){
+        //     // when {
+        //     //     expression { env.FLAG == 'DRUSH' }
+        //     // }
+        //     steps {
+        //         echo "conditional step drush"
+        //         script {
+        //             if (env.FLAG == 'DRUSH' || env.FLAG == 'BOTH'){
+        //                 echo "${env.FLAG}"
+        //             }
+        //             if (env.FLAG == 'CF' || env.FLAG == 'BOTH') {
+        //                 echo "${env.FLAG}"
+        //             }
+        //         }
+        //     }
+        // }
+        stage('CF STEP'){
+            when {
+                expression { env.FLAG == 'CF' || env.FLAG == 'BOTH' }
+            }
             steps {
-                echo "conditional step drush"
-                script {
-                    if (env.FLAG == 'DRUSH' || env.FLAG == 'BOTH'){
-                        echo "${env.FLAG}"
-                    }
-                    if (env.FLAG == 'CF' || env.FLAG == 'BOTH') {
-                        echo "${env.FLAG}"
-                    }
-                }
+                echo "EXECUTED WHEN SPECIFIED, BOTH OR CF"
+                echo "${env.FLAG}"
             }
         }
-        // stage('CF STEP'){
-        //     when {
-        //         expression { env.FLAG == 'CF' }
-        //     }
-        //     steps {
-        //         echo "conditional step cf"
-        //         echo "${env.FLAG}"
-        //     }
-        // }
-        // stage('BOTH STEP'){
-        //     when {
-        //         expression { env.FLAG == 'BOTH' }
-        //     }
-        //     steps {
-        //         echo "conditional step both"
-        //         echo "${env.FLAG}"
-        //     }
-        // }
+        stage('DRUSH STEP'){
+            when {
+                expression { env.FLAG == 'DRUSH' || env.FLAG == 'BOTH' }
+            }
+            steps {
+                echo "EXECUTED WHEN SPECIFIED, BOTH OR DRUSH"
+                echo "${env.FLAG}"
+            }
+        }
     }
 }
