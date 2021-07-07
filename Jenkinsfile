@@ -44,9 +44,9 @@ pipeline {
                 sh "rm -rf /etc/casc/*"
                 sh "ls -la /etc/casc"
                 sh "cp ./casc/*.yaml /etc/casc/"
-                echo "${env.JENKINS_URL}"
-                echo "$CRUMB"
-                sh ("curl -u \"$JENKINS_CREDS_USR:$JENKINS_CREDS_PSW\" --cookie ./cookie -I -H \"${env.CRUMB}\" -X POST '${env.JENKINS_URL}configuration-as-code/reload'")
+                // echo "${env.JENKINS_URL}"
+                // echo "$CRUMB"
+                // sh ("curl -u \"$JENKINS_CREDS_USR:$JENKINS_CREDS_PSW\" --cookie ./cookie -I -H \"${env.CRUMB}\" -X POST '${env.JENKINS_URL}configuration-as-code/reload'")
 
                 // sh "crumb=$(curl -u \":pass\" -s '${env.JENKINS_URL}crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)')"
                 // withCredentials([usernamePassword(credentialsId: 'ottera-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -72,6 +72,7 @@ pipeline {
             // }
             steps {
                 echo "conditional step"
+                echo "${env.FLAG}"
             }
         }
     }
