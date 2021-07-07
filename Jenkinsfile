@@ -66,12 +66,30 @@ pipeline {
                 // }
             }
         }
-        stage('conditional test'){
-            // when {
-            //     expression {}
-            // }
+        stage('DRUSH STEP'){
+            when {
+                expression { env.FLAG == 'DRUSH' }
+            }
             steps {
-                echo "conditional step"
+                echo "conditional step drush"
+                echo "${env.FLAG}"
+            }
+        }
+        stage('CF STEP'){
+            when {
+                expression { env.FLAG == 'CF' }
+            }
+            steps {
+                echo "conditional step cf"
+                echo "${env.FLAG}"
+            }
+        }
+        stage('BOTH STEP'){
+            when {
+                expression { env.FLAG == 'BOTH' }
+            }
+            steps {
+                echo "conditional step both"
                 echo "${env.FLAG}"
             }
         }
