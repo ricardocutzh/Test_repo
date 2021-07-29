@@ -18,7 +18,7 @@ def create_builder_jobs(env, folder_name) {
             }
             stringParam('IDENTIFIER', 'ottera', 'identifier used in the infrastructure')
             stringParam('ENVIRONMENT', "${env}", 'environment used in the infrastructure')
-            text('PARAMETERS_PAYLOAD', "{json:file}", 'parameters that will be replaced in code while processing php files')
+            text('PARAMETERS_PAYLOAD', "json file", 'parameters that will be replaced in code while processing php files')
             stringParam('EXECUTION_ID', '1AB2', 'execution id')
         }
         definition {
