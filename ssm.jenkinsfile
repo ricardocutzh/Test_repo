@@ -1,0 +1,39 @@
+pipeline {
+    agent {
+        node {
+            label 'master' //label 'DOCKER'
+        }
+    }
+    stages {
+        stage('Creating variables file'){
+            steps {
+                sh "echo $PARAMETERS_PAYLOAD > ./variables/params.json"
+            }
+        }
+        stage('Docker Build'){
+            steps {
+                echo 'Docker build'
+                //sh "aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ECR_REPO" //to access ecr
+                //sh "docker build --no-cache -f Dockerfile -t $IMAGE_NAME:${env.GIT_COMMIT} ."
+            }
+        }
+        stage('Docker Push'){
+            steps {
+                echo 'Pushing Docker Image'
+                //sh "docker tag $IMAGE_NAME:${env.GIT_COMMIT} $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
+                //sh "docker push $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
+            }
+        }
+        stage('Echo test'){
+            steps {
+                echo ./variables/params.json
+            }
+        }
+    }
+    post {
+        always {
+            echo "cleaning up..."
+            //sh "docker rmi --force $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
+        }
+    }
+}
