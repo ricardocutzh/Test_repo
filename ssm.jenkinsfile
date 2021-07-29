@@ -8,6 +8,7 @@ pipeline {
         stage('Creating variables file'){
             steps {
                 sh 'pwd'
+                sh 'ls'
                 sh "echo $PARAMETERS_PAYLOAD >> ./variables/params.json"
             }
         }
