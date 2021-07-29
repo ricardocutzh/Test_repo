@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls'
-                sh "echo $PARAMETERS_PAYLOAD >> ./variables/params.json"
+                sh "echo $PARAMETERS_PAYLOAD >> variables/params.json"
             }
         }
         stage('Docker Build'){
