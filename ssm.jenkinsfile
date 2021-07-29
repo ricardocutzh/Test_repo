@@ -12,14 +12,14 @@ pipeline {
         }
         stage('Docker Build'){
             steps {
-                echo 'Docker build'
+                echo "Docker build"
                 //sh "aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ECR_REPO" //to access ecr
                 //sh "docker build --no-cache -f Dockerfile -t $IMAGE_NAME:${env.GIT_COMMIT} ."
             }
         }
         stage('Docker Push'){
             steps {
-                echo 'Pushing Docker Image'
+                echo "Pushing Docker Image"
                 //sh "docker tag $IMAGE_NAME:${env.GIT_COMMIT} $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
                 //sh "docker push $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
             }
