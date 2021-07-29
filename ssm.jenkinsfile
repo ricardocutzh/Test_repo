@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Echo test'){
             steps {
-                echo ./variables/params.json
+                sh "echo ./variables/params.json"
             }
         }
     }
