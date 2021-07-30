@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Echo test'){
             steps {
-                sh "echo ./variables/params.json"
+                sh "cat ./variables/params.json"
             }
         }
     }
