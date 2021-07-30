@@ -9,9 +9,9 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls'
-                sh 'cd variables'
                 sh 'ls'
-                echo "$PARAMETERS_PAYLOAD" >> params.json
+                sh 'echo "$PARAMETERS_PAYLOAD" >> params.json'
+                sh 'ls'
             }
         }
         stage('Docker Build'){
