@@ -10,7 +10,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls'
                 sh 'cd variables'
-                sh "ls"
+                sh 'ls'
                 echo "$PARAMETERS_PAYLOAD" >> params.json
             }
         }
