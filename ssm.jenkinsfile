@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Docker Run'){
             steps {
-                sh 'docker run -v ./templates:/home/templates -v ./variables:/variables/templates codegenerator:${env.GIT_COMMIT} python generator.py'
+                sh 'docker run -v ./templates:/home/templates -v ./variables:/home/variables codegenerator:${env.GIT_COMMIT} python generator.py'
             }
         }
     }
