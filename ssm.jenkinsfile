@@ -7,30 +7,23 @@ pipeline {
     stages {
         stage('Creating variables file'){
             steps {
-                sh 'pwd'
-                sh 'ls'
-                sh 'ls'
                 sh 'echo "$PARAMETERS_PAYLOAD" >> ./variables/params.json'
-                sh 'ls'
             }
         }
         stage('Docker Build'){
             steps {
                 echo "Docker build"
-                //sh "aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ECR_REPO" //to access ecr
-                //sh "docker build --no-cache -f Dockerfile -t $IMAGE_NAME:${env.GIT_COMMIT} ."
+                sh "docker build --no-cache -f Dockerfile -t $codegenerator:${env.GIT_COMMIT} ."
             }
         }
-        stage('Docker Push'){
-            steps {
-                echo "Pushing Docker Image"
-                //sh "docker tag $IMAGE_NAME:${env.GIT_COMMIT} $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
-                //sh "docker push $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
-            }
-        }
-        stage('Echo test'){
+        stage('Echo parameters file'){
             steps {
                 sh "cat ./variables/params.json"
+            }
+        }
+        stage('Docker Run'){
+            steps {
+                sh 'docker run -v ./templates:/home/templates -v ./variables:/home/variables codegenerator:${env.GIT_COMMIT} python generator.py'
             }
         }
     }
