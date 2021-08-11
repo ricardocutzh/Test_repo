@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        node {
+            label 'master' //label 'DOCKER'
+        }
+    }
+    stages {
+        stage('Creating variables file'){
+            steps {
+                sh 'echo "$PARAMETERS_PAYLOAD" >> ./variables/params.json'
+            }
+        }
+        stage('Docker Build'){
+            steps {
+                echo "Docker build"
+                sh "docker build --no-cache -f Dockerfile -t $codegenerator:${env.GIT_COMMIT} ."
+            }
+        }
+        stage('Echo parameters file'){
+            steps {
+                sh "cat ./variables/params.json"
+            }
+        }
+        stage('Docker Run'){
+            steps {
+                sh 'docker run -v ./templates:/home/templates -v ./variables:/home/variables codegenerator:${env.GIT_COMMIT} python generator.py'
+            }
+        }
+    }
+    post {
+        always {
+            echo "cleaning up..."
+            //sh "docker rmi --force $ECR_REPO/$IMAGE_NAME:${env.GIT_COMMIT}"
+        }
+    }
+}
