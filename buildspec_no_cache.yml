@@ -1,0 +1,16 @@
+---
+version: 0.2
+phases:
+  pre_build:
+      commands:
+      - echo "pre build"
+  build:
+    commands:
+      - echo "starting build"
+      - docker build -t test:latest .
+      - docker tag test:latest test:CODEBUILD_BUILD_NUMBER
+  post_build:
+    commands:
+      - echo "{\nfinish\n}" > build.json
+artifacts:
+  files: build.json
