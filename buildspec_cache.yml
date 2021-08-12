@@ -1,0 +1,20 @@
+---
+version: 0.2
+phases:
+  pre_build:
+      commands:
+      - echo "pre build"
+      - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
+      - docker pull ricardcutzh/test-docker:latest
+  build:
+    commands:
+      - echo "starting build"
+      - docker build -t ricardcutzh/test-docker:latest .
+      - docker tag ricardcutzh/test-docker:latest ricardcutzh/test-docker:$CODEBUILD_BUILD_NUMBER
+      - docker push ricardcutzh/test-docker:latest
+      - docker push ricardcutzh/test-docker:$CODEBUILD_BUILD_NUMBER
+  post_build:
+    commands:
+      - echo "{\nfinish\n}" > build.json
+artifacts:
+  files: build.json

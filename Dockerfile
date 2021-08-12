@@ -8,4 +8,9 @@ RUN apt install -y unzip
 
 RUN apt install -y curl
 
-RUN apt install -y nano 
+RUN apt install -y nano
+
+RUN apt install -y vim
+
+RUN apt update
+
