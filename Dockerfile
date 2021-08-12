@@ -14,3 +14,8 @@ RUN apt install -y vim
 
 RUN apt update
 
+WORKDIR /home
+
+RUN mkdir test
+
+RUN apt update
