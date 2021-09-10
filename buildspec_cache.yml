@@ -5,8 +5,13 @@ phases:
       commands:
       - echo "pre build"
       - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
-      - DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect ricardcutzh/test-docker:latest > /dev/null ; echo $?
-      - docker pull ricardcutzh/test-docker:latest
+      - |
+        if DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect ricardcutzh/test-docker:latest > /dev/null ; then
+          echo "First build, the image with latest tag does not exist"
+        else
+          docker pull ricardcutzh/test-docker:latest
+        fi
+      # - docker pull ricardcutzh/test-docker:latest
   build:
     commands:
       - echo "starting build"
