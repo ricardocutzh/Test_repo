@@ -5,8 +5,7 @@ phases:
       commands:
       - echo "pre build"
       - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
-      - DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect ricardcutzh/test-docker:latest > /dev/null && echo "Image and Tag already exists.. pulling..." || echo "skip pulling..."
-      - docker pull ricardcutzh/test-docker:latest
+      - DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect ricardcutzh/test-docker:latest > /dev/null && docker pull ricardcutzh/test-docker:latest || echo "skip pulling... image does not exist yet"
   build:
     commands:
       - echo "starting build"
