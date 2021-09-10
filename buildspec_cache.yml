@@ -5,7 +5,7 @@ phases:
       commands:
       - echo "pre build"
       - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
-      - docker manifest inspect ricardcutzh/test-docker:latest > /dev/null ; echo $?
+      - DOCKER_CLI_EXPERIMENTAL=enabled docker manifest inspect ricardcutzh/test-docker:latest > /dev/null ; echo $?
       - docker pull ricardcutzh/test-docker:latest
   build:
     commands:
