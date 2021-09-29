@@ -6,7 +6,7 @@ echo ">> changing directory "
 cd slack_lambda/
 
 echo ">> ziping files"
-zip -r ../zip/slack_lambda2.zip *
+zip -r ../zip/slack_lambda.zip *
 
 echo ">> going back..."
 cd ..

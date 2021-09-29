@@ -2,7 +2,9 @@ import json
 import os
 import logging
 import urllib.parse
-from botocore.vendored import requests
+# from botocore.vendored import requests
+import urllib3
+http = urllib3.PoolManager()
 import re
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -72,9 +74,10 @@ def post_to_slack(status_message, envr, message,color_msg, alarm_name, new_state
                     }
                 ]
                 }
-        hooks = get_hooks(SLACK_HOOK)
+        hooks = [SLACK_HOOK]
         for h in hooks:
-            response = requests.post(h, json.dumps(data), headers={'Content-Type': 'application/json'})
+            # response = requests.post(h, json.dumps(data), headers={'Content-Type': 'application/json'})
+            response = http.request('POST',h, body = json.dumps(data), headers={'Content-Type': 'application/json'}, retries = False)
             print('>> sending to hook '+str(h))
             print(response)
         return 'success'
