@@ -1,0 +1,86 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Description:
+  Template for python 3.8 lambda functions, using serverless transform
+
+Parameters:
+
+  Identifier:
+    Type: String
+    Description: Name to tag the resources
+
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues: [prod, stage, dev, qa]
+    Description: Environment name to append to resources names and tags
+
+  StackName:
+    Type: String
+    Description: The name of the stack to which these resources belong
+
+  LambdaTimeout:
+    Type: String
+    Default: 300
+    Description: time out for the lambda
+
+  S3ZipCodeBucket:
+    Type: String
+    Description: S3 package of the lambda
+
+  S3ZipCodeKey:
+    Type: String
+    Description: S3 package of the lambda
+
+  Handler:
+    Type: String
+    Default: index.handler
+    Description: handler of the lambda function
+
+Globals:
+
+  Function:
+    Runtime: python3.8
+    Timeout: !Ref LambdaTimeout
+    Environment:
+      Variables:
+        ACCOUNT_NUMBER: !Ref AWS::AccountId
+        REGION: !Ref AWS::Region
+        ENVIRONMENT: !Ref Environment
+        STACK_NAME: !Ref StackName
+    Tags:
+      Environment: !Ref Environment
+      StackName: !Ref StackName
+
+Resources:
+
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${StackName}-${Identifier}
+      CodeUri:
+        Bucket: !Ref S3ZipCodeBucket
+        Key: !Ref S3ZipCodeKey
+      Handler: index.handler
+      Policies:
+        - Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action: 
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: '*'
+      Tags:
+        Name: !Sub ${StackName}-${Identifier}
+        Environment: !Ref Environment
+        StackName: !Ref StackName
+  
+
+Outputs:
+  Lambdafunction:
+    Description: Lambda function created
+    Value: !Ref LambdaFunction
+    Export:
+      Name: !Sub ${StackName}-${Identifier}-lambdafunction
