@@ -71,6 +71,7 @@ Resources:
             - logs:CreateLogGroup
             - logs:CreateLogStream
             - logs:PutLogEvents
+            - ecs:*
             Resource: '*'
       Tags:
         Name: !Sub ${StackName}-${Identifier}

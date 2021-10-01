@@ -2,6 +2,7 @@ import json
 import os
 import logging
 import urllib.parse
+import boto3
 # from botocore.vendored import requests
 import urllib3
 http = urllib3.PoolManager()
@@ -10,6 +11,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 SLACK_HOOK = os.environ["SLACK_HOOK"]
+client = boto3.client('ecs')
 
 def handler(event, context):
     try:
@@ -17,11 +19,12 @@ def handler(event, context):
             print(">> state changed for job")
             if(event["detail"]["status"] == "SUCCEEDED"):
                 print(">> task ended....")
+                task_arn = event["detail"]["container"]["containerInstanceArn"]
                 if("reason" in event["detail"]["container"]):
                     print(event["detail"]["container"]["reason"])
-                    post_to_slack("ALARM", "dev", event["detail"]["container"]["reason"], "FF0000", "AWS BATCH", "ALARM", event["detail"]["container"]["reason"], "TESTING A SUCCEEDED JOB WITH ERROR: OUT OF MEMORY ERROR")
+                    post_to_slack("ALARM", "dev", event["detail"]["container"]["reason"], "FF0000", "AWS BATCH", "ALARM", event["detail"]["container"]["reason"], str(task_arn))
                 else:
-                    post_to_slack("OK", "dev", "Job finished successfully", "#009933", "AWS BATCH", "ALARM", "Job finished successfully", "TESTING A SUCCEEDED JOB")
+                    post_to_slack("OK", "dev", "Job finished successfully", "#009933", "AWS BATCH", "ALARM", "Job finished successfully", str(task_arn))
                     
         return {"statusCode": 200, "body": json.dumps('ricardo'), "headers": { "headerName": "headerValue"}, "isBase64Encoded": False}
     except Exception as e:
