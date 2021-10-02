@@ -19,12 +19,14 @@ def handler(event, context):
             print(">> state changed for job")
             if(event["detail"]["status"] == "SUCCEEDED"):
                 print(">> task ended....")
-                task_arn = event["detail"]["container"]["containerInstanceArn"]
+                task_arn = event["detail"]["container"]["taskArn"]
+                response = client.describe_tasks(tasks=[task_arn])
+                print(response)
                 if("reason" in event["detail"]["container"]):
                     print(event["detail"]["container"]["reason"])
-                    post_to_slack("ALARM", "dev", event["detail"]["container"]["reason"], "FF0000", "AWS BATCH", "ALARM", event["detail"]["container"]["reason"], str(task_arn))
+                    post_to_slack("ALARM", "dev", event["detail"]["container"]["reason"], "FF0000", "AWS BATCH", "ALARM", event["detail"]["container"]["reason"], task_arn)
                 else:
-                    post_to_slack("OK", "dev", "Job finished successfully", "#009933", "AWS BATCH", "ALARM", "Job finished successfully", str(task_arn))
+                    post_to_slack("OK", "dev", "Job finished successfully", "#009933", "AWS BATCH", "ALARM", "Job finished successfully", task_arn)
                     
         return {"statusCode": 200, "body": json.dumps('ricardo'), "headers": { "headerName": "headerValue"}, "isBase64Encoded": False}
     except Exception as e:
