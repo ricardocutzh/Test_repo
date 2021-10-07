@@ -20,7 +20,7 @@ def handler(event, context):
             if(event["detail"]["status"] == "SUCCEEDED"):
                 print(">> task ended....")
                 task_arn = event["detail"]["container"]["taskArn"]
-                response = client.describe_tasks(tasks=[task_arn])
+                response = client.describe_tasks(cluster='ricardo-aws-batch-memory_Batch_1f6d20f2-f47f-35c9-aee4-81bcc877a124',tasks=[task_arn])
                 print(response)
                 if("reason" in event["detail"]["container"]):
                     print(event["detail"]["container"]["reason"])
@@ -82,7 +82,7 @@ def post_to_slack(status_message, envr, message,color_msg, alarm_name, new_state
         hooks = [SLACK_HOOK]
         for h in hooks:
             # response = requests.post(h, json.dumps(data), headers={'Content-Type': 'application/json'})
-            response = http.request('POST',h, body = json.dumps(data), headers={'Content-Type': 'application/json'}, retries = False)
+            # response = http.request('POST',h, body = json.dumps(data), headers={'Content-Type': 'application/json'}, retries = False)
             print('>> sending to hook '+str(h))
             print(response)
         return 'success'
