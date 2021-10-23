@@ -8,7 +8,12 @@ pipeline {
         stage('CF STEP'){
             steps {
                 retry(count: 3) {
-                    sh 'exit 1'
+                    try {
+                        sh 'exit 1'
+                    }
+                    } catch(error) {
+                        sh 'sleep 10'
+                    }
                 }
             }
         }
