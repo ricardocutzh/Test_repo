@@ -1,4 +1,4 @@
-int count = 0
+int count = 1
 pipeline {
     agent {
         node {
@@ -14,7 +14,8 @@ pipeline {
                             echo "${count}"
                             sh 'exit 1'
                         } catch(error) {
-                            sh 'sleep 10'
+                            sleep  = count * 15
+                            sh 'sleep ${sleep}'
                             count = count + 1
                             sh 'exit 1'
                         }
