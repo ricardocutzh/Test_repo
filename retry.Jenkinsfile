@@ -13,7 +13,7 @@ pipeline {
                             sh 'exit 1'
                         } catch(error) {
                             sh 'sleep 10'
-                            exit '1'
+                            sh 'exit 1'
                         }
                     }
                 }
