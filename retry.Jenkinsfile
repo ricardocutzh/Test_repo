@@ -11,8 +11,8 @@ pipeline {
                 retry(count: 3) {
                     script {
                         try {
-                            sh 'exit 1'
                             echo "${count}"
+                            sh 'exit 1'
                         } catch(error) {
                             sh 'sleep 10'
                             sh 'exit 1'
