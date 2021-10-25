@@ -15,9 +15,9 @@ pipeline {
                             sh 'exit 1'
                         } catch(error) {
                             sh 'sleep 10'
+                            count = count + 1
                             sh 'exit 1'
                         }
-                        count = count + 1
                     }
                 }
             }
