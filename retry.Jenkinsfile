@@ -12,6 +12,7 @@ pipeline {
                     script {
                         try {
                             sh 'exit 1'
+                            echo "${count}"
                         } catch(error) {
                             sh 'sleep 10'
                             sh 'exit 1'
