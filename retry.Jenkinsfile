@@ -1,3 +1,4 @@
+int count = 0
 pipeline {
     agent {
         node {
@@ -15,6 +16,7 @@ pipeline {
                             sh 'sleep 10'
                             sh 'exit 1'
                         }
+                        count = count + 1
                     }
                 }
             }
