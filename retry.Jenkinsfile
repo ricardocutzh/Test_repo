@@ -1,3 +1,4 @@
+int count = 1
 pipeline {
     agent {
         node {
@@ -8,7 +9,6 @@ pipeline {
         stage('CF STEP'){
             steps {
                 retry(count: 3) {
-                    int count = 1
                     script {
                         try {
                             echo "${count}"
