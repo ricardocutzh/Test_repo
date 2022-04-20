@@ -16,4 +16,5 @@ jobs:
       - name: test cli
         run: |
           pip3 install awsebcli --upgrade
+          echo "app-$GITHUB_SHA"
           eb --version
