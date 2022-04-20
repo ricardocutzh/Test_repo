@@ -1,33 +1,19 @@
-name: Test-Workflow
-
+name: "Github Action: push backend site"
 on:
-  # when the tag is pushed to github with wildcard v1.*
   push:
-    tags:
-      - v1.*
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read 
 
 jobs:
-  build:
+  development:
     runs-on: ubuntu-latest
     steps:
-      # checks out the source
       - uses: actions/checkout@v2
-      # github action to get the tag pushed
-      - name: Get tag
-        id: tag-value
-        uses: dawidd6/action-get-tag@v1
-      # zips the repository with the tag from previous action
-      - uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r ${{steps.tag-value.outputs.tag}}.zip .
-      # uploads the file to S3
-      - name: Upload files
-        uses: docker://amazon/aws-cli:latest
-        with:
-          args: s3 cp ${{steps.tag-value.outputs.tag}}.zip  s3://xcm-demo-artifacts/
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # this was used only to test, there is a need to create a user with permissions over the bucket
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-          AWS_DEFAULT_REGION: us-east-1
+      - name: test cli
+        run: |
+          pip3 install awsebcli --upgrade
+          eb --version
