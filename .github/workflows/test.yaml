@@ -18,3 +18,9 @@ jobs:
           pip3 install 'awsebcli==3.20.3' --upgrade
           echo "app-$GITHUB_SHA"
           eb --version
+      - name: Check URL endpoint
+        uses: jtalk/url-health-check-action@v2
+        with:
+          url: "{{secrets.HEALTH_URL}}"
+          max-attempts: 3
+          retry-delay: 5s
