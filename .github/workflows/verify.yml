@@ -2,10 +2,6 @@ name: verify portalapi
 
 on:
   workflow_call:
-    inputs:
-      envr:
-        required: true
-        type: string
 
 jobs:
   verify:
