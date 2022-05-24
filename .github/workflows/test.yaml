@@ -6,7 +6,7 @@ on:
     paths:
       -  "helloworld/**"
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, closed]
     branches:    
       - "master"
     paths:
