@@ -4,17 +4,17 @@ on:
     branches:    
       - "*"
     paths:
-      -  "packages/portalapi/**"
+      -  "helloworld/**"
   pull_request:
     types: [opened, reopened]
     branches:    
       - "*"
     paths:
-      -  "packages/portalapi/**"
+      -  "helloworld/**"
 
 defaults:
   run:
-    working-directory: ./packages/portalapi
+    working-directory: ./helloworld
 
 permissions:
   id-token: write
@@ -36,11 +36,11 @@ jobs:
       run: |
         python -m pip install --upgrade setuptools pip wheel py-make
 
-    - name: Install dependencies
-      run: pymake install
+    # - name: Install dependencies
+    #   run: pymake install
 
-    - name: Lint code
-      run: pymake lint
+    # - name: Lint code
+    #   run: pymake lint
 
-    - name: Test code 
-      run: poetry run pytest
+    # - name: Test code 
+    #   run: poetry run pytest
