@@ -24,7 +24,7 @@ jobs:
   build:
     uses: ricardocutz/Test_repo/.github/workflows/portalapi/deploy.yml
     with:
-      username: mona
+      environment: dev
 
   # deploy:
   #   if: github.event.pull_request.merged == true
