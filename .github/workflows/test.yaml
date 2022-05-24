@@ -22,43 +22,24 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    uses: ricardocutz/Test_repo/.github/workflows/portalapi/deploy.yml
+    with:
+      username: mona
 
-    - name: Setup Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.9"
+  # deploy:
+  #   if: github.event.pull_request.merged == true
+  #   needs: build
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v3
 
-    - name: Install  pip
-      run: |
-        python -m pip install --upgrade setuptools pip wheel py-make
+  #   - name: Setup Python
+  #     uses: actions/setup-python@v3
+  #     with:
+  #       python-version: "3.9"
 
-  deploy:
-    if: github.event.pull_request.merged == true
-    needs: build
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Setup Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.9"
-
-    - name: Install  pip
-      run: |
-        python -m pip install --upgrade setuptools pip wheel py-make
-        ls -la
-
-    # - name: Install dependencies
-    #   run: pymake install
-
-    # - name: Lint code
-    #   run: pymake lint
-
-    # - name: Test code 
-    #   run: poetry run pytest
+  #   - name: Install  pip
+  #     run: |
+  #       python -m pip install --upgrade setuptools pip wheel py-make
+  #       ls -la
