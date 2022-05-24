@@ -2,13 +2,13 @@ name: "Github Action: deploy portalapi"
 on:
   push:
     branches:    
-      - "*"
+      - "feat/test"
     paths:
       -  "helloworld/**"
   pull_request:
     types: [opened, reopened]
     branches:    
-      - "*"
+      - "master"
     paths:
       -  "helloworld/**"
 
