@@ -21,7 +21,7 @@ jobs:
 
     - name: Install  pip
       env:
-          ENVIRONMENT: ${{ inputs.username }}
+        ENVIRONMENT: ${{ inputs.username }}
       run: |
-        echo $ENVIRONMENT
+        echo "$ENVIRONMENT"
         python -m pip install --upgrade setuptools pip wheel py-make
