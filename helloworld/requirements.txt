@@ -1,7 +1,2 @@
 jinja
 boto3
-
-
-
-
-
