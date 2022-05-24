@@ -1,5 +1,8 @@
 name: deploy portalapi
 
+on:
+  workflow_call:
+
 jobs:
   deploy:
     if: github.event.pull_request.merged == true
