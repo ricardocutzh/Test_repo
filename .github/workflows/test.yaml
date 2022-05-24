@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   build:
-    uses: ./.github/workflows/portalapi/deploy.yml
+    uses: ./.github/workflows/deploy.yml
     with:
       environment: dev
 
