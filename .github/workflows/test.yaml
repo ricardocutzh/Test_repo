@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   build:
-    uses: ricardocutz/Test_repo/.github/workflows/portalapi/deploy.yml
+    uses: ricardocutz/Test_repo/.github/workflows/portalapi/deploy.yml@master
     with:
       environment: dev
 
