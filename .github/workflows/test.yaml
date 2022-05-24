@@ -1,12 +1,13 @@
 name: "Github Action: deploy portalapi"
+
 on:
   pull_request:
     types:
       - closed
   branches:    
-      - 'master'
+    - 'master'
   paths:
-      - 'helloworld/**'
+    - 'helloworld/**'
 
 defaults:
   run:
