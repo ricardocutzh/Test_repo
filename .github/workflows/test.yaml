@@ -3,7 +3,7 @@ name: "Github Action: deploy portalapi"
 on:
   pull_request:
     types:
-      - closed
+      - opened
   branches:    
     - 'master'
   paths:
