@@ -24,7 +24,7 @@ jobs:
   build:
     uses: ./.github/workflows/verify.yml
     with:
-      environment: dev
+      envr: dev
 
   # deploy:
   #   if: github.event.pull_request.merged == true

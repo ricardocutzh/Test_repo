@@ -3,7 +3,7 @@ name: verify portalapi
 on:
   workflow_call:
     inputs:
-      environment:
+      envr:
         required: true
         type: string
 
@@ -21,7 +21,7 @@ jobs:
 
     - name: Install  pip
       env:
-        ENVIRONMENT: ${{ inputs.username }}
+        ENVIRONMENT: ${{ inputs.envr }}
       run: |
-        echo "$ENVIRONMENT"
+        echo $ENVIRONMENT
         python -m pip install --upgrade setuptools pip wheel py-make
