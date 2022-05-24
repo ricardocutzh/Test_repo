@@ -4,8 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  deploy:
-    if: github.event.pull_request.merged == true
+  deploy-aws:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout repository

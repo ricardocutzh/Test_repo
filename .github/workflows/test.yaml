@@ -26,6 +26,11 @@ jobs:
     with:
       envr: dev
 
+  deploy:
+    if: github.event.pull_request.merged == true
+    needs: build
+    uses: ./.github/workflows/deploy.yml
+
   # deploy:
   #   if: github.event.pull_request.merged == true
   #   needs: build

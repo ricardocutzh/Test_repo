@@ -8,7 +8,7 @@ on:
         type: string
 
 jobs:
-  pre-deploy-steps:
+  verify:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout repository
