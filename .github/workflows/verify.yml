@@ -21,5 +21,7 @@ jobs:
       run: |
         echo $ENVIRONMENT
         python -m pip install --upgrade setuptools pip wheel py-make
+        echo "before sleep"
         sleep 15
+        echo "after sleep"
         aws --version
