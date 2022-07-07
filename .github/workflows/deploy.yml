@@ -6,4 +6,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: build packages
-      run: ls -la
+      run: ls -la && sleep 30
