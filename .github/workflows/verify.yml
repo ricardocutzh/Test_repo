@@ -1,27 +1,9 @@
-name: verify portalapi
-
-on:
-  workflow_call:
-
+name: Self Hosted - 3
+on: [push]
 jobs:
-  verify:
-    runs-on: ubuntu-20.04
+  build:
+    runs-on: self-hosted
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Setup Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.9"
-
-    - name: Install  pip
-      env:
-        ENVIRONMENT: ${{ inputs.envr }}
-      run: |
-        echo $ENVIRONMENT
-        python -m pip install --upgrade setuptools pip wheel py-make
-        echo "before sleep"
-        sleep 15
-        echo "after sleep"
-        aws --version
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: ls -la && sleep 15
