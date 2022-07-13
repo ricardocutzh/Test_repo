@@ -7,3 +7,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: build packages
       run: ls -la && sleep 15
+    - name: docker
+      run: docker --version
