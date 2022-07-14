@@ -22,4 +22,4 @@ RUN mkdir test
 
 RUN apt update
 
-
+RUN apt install -y software-properties-common
