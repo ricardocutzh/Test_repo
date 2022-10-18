@@ -1,6 +1,8 @@
 
 name: act poc
 on: [push]
+concurrency:
+  group: ricardo-test
 jobs:
   build:
     runs-on: ubuntu-20.04
